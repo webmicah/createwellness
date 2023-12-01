@@ -1,0 +1,243 @@
+<!doctype html>
+{%- assign dir_body = settings.dir_body -%}
+{%- if settings.popup_ageVer and settings.popup_ageVer_coll_list != blank -%}
+  {%- assign coll_list = settings.popup_ageVer_coll_list | split: ', ' -%}
+  {%- if coll_list contains collection.handle -%}
+    {%- assign ageVer = ' ageVerModal"' -%}
+  {%- endif -%}
+{%- elsif settings.popup_ageVer -%}
+  {%- assign ageVer = ' ageVerModal"' -%}
+{%- endif -%}
+<html class="no-js{{ageVer}}" lang="{{shop.locale}}" dir="{{dir_body}}">
+  <head>
+  <!-- BEGIN NOVEL SNIPPET -->{% if content_for_header contains "novel-storefront" %}{% render 'novel-head' %}{% endif %}<!-- END NOVEL SNIPPET -->
+{% render 'replo-head' %}
+<link rel='preconnect dns-prefetch' href='https://triplewhale-pixel.web.app/' crossorigin />
+<link rel='preconnect dns-prefetch' href='https://api.config-security.com/' crossorigin />
+<script>
+/* >> TriplePixel :: start*/
+~function(W,H,A,L,E,_,B,N){function O(U,T,H,R){void 0===R&&(R=!1),H=new XMLHttpRequest,H.open("GET",U,!0),H.send(null),H.onreadystatechange=function(){4===H.readyState&&200===H.status?(R=H.responseText,U.includes(".txt")?eval(R):N[B]=R):(299<H.status||H.status<200)&&T&&!R&&(R=!0,O(U,T-1))}}if(N=window,!N[H+"sn"]){N[H+"sn"]=1;try{A.setItem(H,1+(0|A.getItem(H)||0)),(E=JSON.parse(A.getItem(H+"U")||"[]")).push(location.href),A.setItem(H+"U",JSON.stringify(E))}catch(e){}A.getItem('"!nC`')||(A=N,A[H]||(L=function(){return Date.now().toString(36)+"_"+Math.random().toString(36)},E=A[H]=function(t,e){return W=L(),(E._q=E._q||[]).push([W,t,e]),W},E.ch=W,B="configSecurityConfModel",N[B]=1,O("//conf.config-security.com/model",0),O("//triplewhale-pixel.web.app/triplefw.txt?",5)))}}("","TriplePixel",localStorage);
+/* << TriplePixel :: end*/
+</script>
+  <meta name="google-site-verification" content="7-nUo3NycdaHdKLOvvInB7-t1ktEm-KFm0-YotzDaAE" />
+
+
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="theme-color" content="{{settings.color_primary}}">
+    {%-render 'meta-tags', dir_body: dir_body-%}
+    {%-if dir_body == 'ltr'-%}
+      {%-assign dir_css = ''-%}
+    {%-else-%}
+      {%-assign dir_css = '-rtl'-%}
+    {%-endif-%}
+    {%- assign map_rtl = 'ar,dv,ha,he,ku,fa,ur,ps,yi' | split: ',' -%}
+    {%- if map_rtl contains shop.locale -%}{%-assign dir_css = '-rtl'-%}{%- endif -%}
+    <link href="{{'style-speed.css' | asset_url}}" rel="stylesheet" type="text/css" media="all">
+    {%- assign style_css = 'style' | append: dir_css | append: '.min.css' -%}
+    {{- style_css | asset_url | stylesheet_tag -}}
+    {%- assign theme_css = 'theme' | append: dir_css | append: '.min.css' -%}
+    {{- theme_css | asset_url | stylesheet_tag -}}
+    {%- if template.name == 'collection' or template.name == 'list-collections' -%}
+      <link href="{{'kt_filters.min.css' | asset_url}}" rel="stylesheet" type="text/css" media="all">
+    {%- endif -%} 
+    {%- if template.name == 'cart' or template.name == 'order' -%}
+      {%- assign cart_css = 'theme.cart' | append: dir_css | append: '.min.css' -%}
+      {{- cart_css | asset_url | stylesheet_tag -}}
+    {%- endif -%}
+    {{- settings.custom_html_head | html -}}
+    {%- assign card_grid_css = 'md_prd_card_grid' | append: dir_css | append: '.min.css' -%}
+    {{- card_grid_css | asset_url | stylesheet_tag -}}
+    <link id="custom-css" href="{{'kiti-var.css' | asset_url}}" rel="stylesheet" type="text/css" media="all">
+    {{ content_for_header }}
+    {%-render 'theme_header_js'-%}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min.css">    
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick-theme.min.css">   
+	<!-- <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://use.typekit.net/jul7dsk.css">
+    {%- render 'nws-custom-fonts' -%}
+    {%- render 'nws-recharge-css' -%}
+    {{ 'nws-custom.css' | asset_url | stylesheet_tag }}  
+
+<!-- Start of Superfiliate -->
+<script async src="https://superfiliate-cdn.com/storefront.js?shop=trycreate-808.myshopify.com"></script>
+<!-- End of Superfiliate -->
+
+</head>
+  <body class="template-{{ request.page_type | default: page_title | handle }} {{ page_title | handle }}{%if settings.img_type == 'stretch'%} is-cover{%elsif settings.img_type == 'nonstretch'%} is-contain{%else%} is-default{%endif%} {{ product.template_suffix }}" grid-info="{{settings.pr_grid_talg}}" grid-name-opt="{{settings.qs_use_name_opt}}" grid-ol-first-opt="{{settings.qs_hide_only_1_opt}}" grid-flash="{{settings.label_style}}">
+    {%- render 'kt_icons_system' -%}
+    <div id="bg-overlay"></div>
+    <div class="content_for_page">
+          {%-section 'nws-header-topbar'-%}
+
+      {%-render 'header-layout'-%}
+      {%-section 'header-mobile'-%}
+      {%-if template.name != 'cart'-%}
+        {%-case settings.type_ajax_cart-%}
+        {%-when 'drawer'-%}
+          <div class="lazyload lazypreload" data-include="{{routes.cart_url | append: '?view=kt_cart_drawer'}}"></div>
+          {%- if settings.enable_auto_gift == true and settings.auto_gift_product != blank and all_products[settings.auto_gift_product].title != blank -%}
+            <script type="application/json" data-gift-auto-add>
+              {
+                "price_limit": {{ all_products[settings.auto_gift_limit].selected_or_first_available_variant.price | json }},
+                "id": {{ all_products[settings.auto_gift_product].selected_or_first_available_variant.id | json }}
+              }
+            </script>
+          {%- endif -%}
+        {%-when 'popup'-%}
+          <div class="lazyload lazypreload" data-include="{{routes.cart_url | append: '?view=kt_cart_popup'}}"></div>
+        {%-endcase-%}
+      {%-endif-%}
+      {%-section 'nws-header-belowbar'-%}
+          
+      <main class="main-content{%if settings.use_wrap_container %} wrap-container{%endif%}{%unless template.name == 'index'%} page-container{%endunless%}" id="PageContainer">
+        {%- liquid
+          unless template contains 'index'
+            section 'kt_banner_all_page'
+            section 'kt_top_banner'
+          endunless
+        -%}
+        {{ content_for_layout }}
+      </main>
+      {%- liquid
+        if settings.use_wrap_container
+          echo '<div class="wrap-container">'
+        endif
+        render 'footer-layout'
+        if settings.use_wrap_container
+          echo '</div>'
+        endif
+        if settings.use_mobile_bottom_bar
+          section 'kt_bottom_bar'
+        endif
+      -%}
+    </div>
+    <div class="content_for_extension">
+      {%- liquid
+        section 'custom_color'
+        if request.design_mode and settings.popup_cookies
+          section 'cookies_popup'
+        endif
+        if ageVer
+          section 'kt_ageVerification'
+        endif
+        if settings.enable_suggest_products
+          render 'kt_suggest'
+        endif
+        if shop.customer_accounts_enabled and settings.modal_login
+          render 'account-popup'
+        endif
+        render 'footer-extension'
+      -%}
+      <div id="toast"></div>
+    </div>
+    <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'jquery-3.6.0.min.js' | asset_url }}"{% unless request.design_mode %} defer="defer"{%-endunless-%}></script>
+    <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'theme_footer_js.js' | asset_url }}" defer="defer"></script>
+    {%- if settings.show_multiple_currencies -%}
+      {%- case settings.currency_options -%}
+        {%- when 'customize' -%}
+          <script src="//cdn.shopify.com/s/javascripts/currencies.js" defer="defer"></script> 
+          <script src="{{ 'jquery.currencies.js' | asset_url }}" defer="defer"></script>
+        {%- else -%}
+          {%- if settings.use_auto_currencies and cart.currency.iso_code == shop.currency and cart.attributes.cry == null -%}
+            <script src="{{ 'jquery.currencies-sp.min.js' | asset_url }}" defer="defer"></script>
+          {%- endif -%}
+      {%- endcase -%}
+    {%- endif -%}
+    {%- if settings.ajax_cart -%}
+      <script src="{{ 'theme.ajax-cart.min.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    {%- if settings.shipping_calculator -%}
+      <script src="{{ 'theme.get-shipping.min.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    {%- if template.name == 'article' and settings.article_layout == '02' -%}
+      <script src="{{ 'jquery.sticky-kit.min.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    <script src="{{ 'bootstrap.bundle.min.js' | asset_url }}" defer="defer"></script>
+    {%- if settings.use_flts -%}
+      {%- if template.name == 'collection' or template.name == 'list-collections' or template.suffix contains 'collection' -%}
+        {%- if settings.multi_flts_or -%}
+          <script src="{{ 'jquery-ui.slider.min.js' | asset_url }}" defer="defer"></script>
+          <script src="{{ 'ktjs_multi_filters.js' | asset_url }}" defer="defer"></script>
+        {%- else -%}
+          <script src="{{ 'ktjs_filters.min.js' | asset_url }}" defer="defer"></script>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- if template.name == 'product' -%}
+      <script src="{{ 'ktjs_product_sg.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    {%- if template.directory == 'customers' -%}
+      <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    <script src="{{ 'theme.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'custom.min.js' | asset_url }}" defer="defer"></script>
+    {%- if template.name == 'cart' and settings.ajax_cart_page -%}
+      <script src="{{ 'theme.ajax-cart-page.min.js' | asset_url }}" defer="defer"></script>
+    {%- endif -%}
+    {%-if template.name == 'index' and settings.newsletter_popup -%}
+      {%-case settings.newsletter_layout-%}
+        {%-when '1'-%}
+          {%-section 'newsletter-popup'-%}
+        {%-when '2'-%}
+          {%-section 'newsletter-popup-2'-%}
+      {%-endcase-%}
+      <script src="{{'theme-cp-newletter.min.js' | asset_url}}" defer="defer"></script>
+    {%-endif-%}
+    {%- if request.design_mode -%}
+      {%-render 't4-toolkit'-%}
+      {%- if shop.metafields.t4pcc.molla != 'true' -%}
+        {%- render 't4-pcc', theme: 'molla' -%}
+      {%- endif -%}
+    {%- endif -%}
+    {%- render 'googleRich' -%}
+
+    {%-render 'nws-custom-js-file'-%}
+    <script src="{{ 'nws-custom.js' | asset_url }}" defer="defer"></script>
+
+    <script type="text/javascript">
+    	document.querySelector('.klaviyo_form_trigger').addEventListener('click', function (){
+    		window._klOnsite = window._klOnsite || []; 
+    		window._klOnsite.push(['openForm', 'Tq2BjZ']);
+    	});
+    </script>
+    {% render 'rebuy-extensions' %}
+
+    {% if product.handle == 'puff-embroidery-crewneck' %}
+      <script type="text/javascript">
+          $.getJSON('/cart.js', function(cart){ 
+            var result = cart.items;
+            var vl = 0;
+            if(result.length != 0){ for (i = 0; i < result.length; ++i){ if(result[i].id != 42352046244028){ vl = 1; return false; } } }else{ vl = 1; }
+            if(vl === 1){
+              data = { "id": 42352046244028, "quantity": 1, "selling_plan": 4629692604 }
+              jQuery.ajax({
+                type: 'POST',
+                url: '/cart/add.js',
+                data: data,
+                dataType: 'json',
+                success: function() { 
+                  Shopify.KT_getCart();
+                  vl = 0;
+                }
+              });
+            }
+          });
+      </script>
+    {% endif %}
+   
+    <!-- Stamped - Begin script -->
+    <script async type="text/javascript" id="stamped-script-widget" data-api-key="pubkey-2LtRgK5s1l196zHl505Bh56ol69fRj" src="https://cdn1.stamped.io/files/widget.min.js"></script>
+    <!-- Stamped - End script -->
+    <script src="https://onetext.com/sdk/onetext.js"
+      data-client-id="onetext_client_production_9661fa73-23d7-4a6f-93f9-c96e22b60f25"></script>
+ 
+  </body>
+</html>
+{{ 'idme-theme-style.css' | asset_url | stylesheet_tag }}
+{{ 'idme-theme-template.js' | asset_url | script_tag }}
