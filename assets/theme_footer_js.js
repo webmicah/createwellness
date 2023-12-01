@@ -6,9 +6,9 @@ theme.gadget = {
   shipToCs: false
 }; 
 theme.extensions = {
-  ktjs_product_sg: '//trycreate.co/cdn/shop/t/24/assets/ktjs_product_sg.min.js?v=2650429334938796761701197932',
+  ktjs_product_sg: '//trycreate.co/cdn/shop/t/23/assets/ktjs_product_sg.min.js?v=2650429334938796761700557900',
   ktjs_flts_or: false,
-  workerktlz: '//trycreate.co/cdn/shop/t/24/assets/workerktlz.min.js?v=67809897946851486111701197932'
+  workerktlz: '//trycreate.co/cdn/shop/t/23/assets/workerktlz.min.js?v=67809897946851486111700557900'
 };
 
 theme.embedResponPlayer = ['.product-desc-content iframe[src*="youtube.com"]', '.product-desc-content iframe[src*="vimeo.com"]', '.blog-content iframe[src*="youtube.com"]', '.blog-content iframe[src*="vimeo.com"]', '.page-content iframe[src*="youtube.com"]', '.page-content iframe[src*="vimeo.com"]', '.imgs__banner_flexible iframe[src*="youtube.com"]', '.imgs__banner_flexible iframe[src*="vimeo.com"]'];

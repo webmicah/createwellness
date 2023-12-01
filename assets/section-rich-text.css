@@ -1,0 +1,136 @@
+.rich-text {
+  margin: auto;
+  max-width: 110rem;
+  text-align: center;
+  /* 1.5rem margin on left & right */
+  width: calc(100% - 3rem);
+}
+
+.rich-text.rich-text--full-width {
+  max-width: initial;
+  width: 100%;
+}
+
+.rich-text__blocks {
+  margin: auto;
+  /* 2.5rem margin on left & right */
+  width: calc(100% - 5rem);
+}
+
+.rich-text__blocks * {
+  overflow-wrap: break-word;
+}
+
+.rich-text--full-width .rich-text__blocks {
+  /* 4rem (1.5rem + 2.5rem) margin on left & right */
+  width: calc(100% - 8rem);
+}
+
+.rich-text:not(.rich-text--full-width),
+.rich-text--full-width.color-background-1 {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.rich-text:not(.color-background-1) {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media screen and (min-width: 750px) {
+  .rich-text {
+    /* 5rem margin on left & right */
+    width: calc(100% - 10rem);
+  }
+
+  .rich-text__blocks {
+    max-width: 50rem;
+  }
+
+  .rich-text--full-width .rich-text__blocks {
+    /* 7.5rem (5rem + 2.5rem) margin on left & right */
+    width: calc(100% - 15rem);
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .rich-text__blocks {
+    max-width: 78rem;
+  }
+}
+
+/* Blocks */
+
+.rich-text__blocks > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.rich-text__blocks > * + * {
+  margin-top: .4rem;
+}
+
+.rich-text__blocks > * + a {
+  margin-top: 3rem;
+}
+
+.rich-text__text p:first-child {
+  margin-top: 0;
+}
+
+.rich-text--full-width .rich-text__blocks {
+  display: block !important;
+}
+
+.rich-text__blocks.align-left h2{
+  transform-origin: left;
+}
+
+.rich-text__blocks.align-right h2{
+  transform-origin: right;
+}
+
+@media only screen and (min-width:750px){
+  .rich-text__blocks.content-position-left{
+    margin-left: 5%;
+  }
+  
+  .rich-text__blocks.content-position-right{
+    margin-right: 5%;
+  }
+  
+  .rich-text__blocks{
+    width:100%;
+    padding:0 10px;    
+  }
+}
+
+/***** Redesign blog page styles start *****/
+.template-blog .rich-text__blocks h2.h1{
+  font-family: 'Aleo';
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.5;
+  text-transform: capitalize;
+  text-align: center;
+}
+.template-blog .rich-text__blocks .rich-text__text.rte{
+  font-family: 'Barlow';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.template-blog .rich-text__blocks .button{
+  font-family: 'Barlow';
+  font-weight: 700;
+  font-size: 12px;
+  border-radius: 4px;
+}
+
+@media only screen and (max-width:749px){
+  .template-blog .rich-text__blocks h2.h1{
+    font-size: 24px;  
+  }
+}
+
+/***** Redesign blog page styles end *****/

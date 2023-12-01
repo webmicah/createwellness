@@ -1,26 +1,26 @@
 {% if product.handle == "creatine-monohydrate-gummies-90-count" or product.handle == "creatine-monohydrate-gummies-blue-raspberry-90-count" %}
-  {% assign pOrg = 0 %}
-  {% assign pOrgd = 0 %}
-  {% assign pSub = 6000 %}
-  {% assign pSubd = 14  %}
+  {% assign pOrg = 4900 %}
+  {% assign pOrgd = 30 %}
+  {% assign pSub = 4200 %}
+  {% assign pSubd = 40  %}
   {% assign pon = 7000  %}
   {% assign pwr = true  %}
 {% endif %}
 
 {% if product.handle == "creatine-monohydrate-gummies-180-count" or product.handle == "creatine-monohydrate-gummies-blue-raspberry-180-count" %}
-  {% assign pOrg = 12500 %}
-  {% assign pOrgd = 11 %}
-  {% assign pSub = 11500 %}
-  {% assign pSubd = 18  %}
+  {% assign pOrg = 8700 %}
+  {% assign pOrgd = 38 %}
+  {% assign pSub = 8000 %}
+  {% assign pSubd = 43  %}
   {% assign pon = 14000  %}
   {% assign pwr = true  %}
 {% endif %}
 
 {% if product.handle == "creatine-monohydrate-gummies-270-count" or product.handle == "creatine-monohydrate-gummies-blue-raspberry-270-count" %}
-  {% assign pOrg = 18000 %}
-  {% assign pOrgd = 14 %}
-  {% assign pSub = 15000 %}
-  {% assign pSubd = 29  %}
+  {% assign pOrg = 12600 %}
+  {% assign pOrgd = 40 %}
+  {% assign pSub = 10500 %}
+  {% assign pSubd = 50  %}
   {% assign pon = 21000  %}
   {% assign pwr = true  %}
 {% endif %}
@@ -67,7 +67,7 @@
       - div.price__unit: Displayed when the first variant has a unit price
       - div.price__availability: Displayed when the product is sold out
   {%- endcomment -%}
-  <div class="price__pricing-group {% if pOrg == 0 %}nws-chk-pr{% endif %}">
+  <div class="price__pricing-group">
     <div class="price__regular">
       <dd>
         <span class="price-item price-item--regular" data-regular-price>
@@ -83,18 +83,18 @@
       </dd>
       <dd>
         <span class="price-item price-item--sale" data-sale-price>
-          {% if pOrg != 0 %}{{ pOrg | money }}{% else %}{{ money_price }}{% endif %}
+          {{ pOrg | money }}
         </span>
       </dd>
       <dd>
         <span class="nws-price-item price-item--sale" data-sale-price>
-          {% if pOrg != 0 %}{{ pOrg | money }}{% else %}{{ money_price }}{% endif %}
+          {{ pOrg | money }}
         </span>
       </dd>
     </div>
     <div class="price__badges">
       <span class="price__badge price__badge--sale" aria-hidden="true">
-        {% if pwr == true %}<span>{% if pOrgd != 0 %}({{ pOrgd }}% off){% endif %}</span>{% endif %}
+        {% if pwr == true %}<span>({{ pOrgd }}% off)</span>{% endif %}
       </span>
       <span class="price__badge price__badge--sold-out">
         <span>{{ 'products.product.sold_out' | t }}</span>
@@ -103,10 +103,10 @@
   </div>
 </dl>
 {% if pwr == true %}
-  <input type="hidden" class="nws-pr-sub" value="{% if pSub != 0 %}{{ pSub | money }}{% endif %}" />
-  <input type="hidden" class="nws-pr-org" value="{% if pOrg != 0 %}{{ pOrg | money }}{% else %}{{ money_price }}{% endif %}" />
-  <input type="hidden" class="nws-ds-sub" value="{% if pSubd != 0 %}({{ pSubd }}% off){% endif %}" />
-  <input type="hidden" class="nws-ds-org" value="{% if pOrgd != 0 %}({{ pOrgd }}% off){% endif %}" />
+  <input type="hidden" class="nws-pr-sub" value="{{ pSub | money }}" />
+  <input type="hidden" class="nws-pr-org" value="{{ pOrg | money }}" />
+  <input type="hidden" class="nws-ds-sub" value="({{ pSubd }}% off)" />
+  <input type="hidden" class="nws-ds-org" value="({{ pOrgd }}% off)" />
   {% style %}
     .rc-radio__label.rc_widget__option__label .rc-option__discount.rc_widget__option__discount {
         display: none;
@@ -118,53 +118,36 @@
         font-weight: 400;
         margin-left: 8px;
     }
+    .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--subsave::before {
+        content: "{{ pSub | money }}";
+        margin-right: 4px;
+        font-size: 14px;
+        line-height: normal;
+    }
+    .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--subsave::after {
+        content: "({{ pSubd }}% off)";
+        margin-left: 0px;
+        color: red;
+        font-size: 14px;
+        line-height: normal;
+    }
     .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--subsave,
     .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--onetime {
         font-weight: 600;
     }
-    {% if pSub != 0 %}
-      .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--subsave::before {
-          content: "{{ pSub | money }}";
-          margin-right: 4px;
-          font-size: 14px;
-          line-height: normal;
-      }
-    {% endif %}
-    {% if pSubd != 0 %}
-      .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--subsave::after {
-          content: "({{ pSubd }}% off)";
-          margin-left: 0px;
-          color: red;
-          font-size: 14px;
-          line-height: normal;
-      }
-    {% endif %}
-    {% if pOrg != 0 %}
-      .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--onetime::before {
-          content: "{{ pOrg | money }}";
-          margin-right: 4px;
-          font-size: 14px;
-          line-height: normal;
-      }
-    {% endif %}
-    {% if pOrgd != 0 %}
-      .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--onetime::after {
-          content: "({{ pOrgd }}% off)";
-          margin-left: 0px;
-          color: red;
-          font-size: 14px;
-          line-height: normal;
-      }
-    {% endif %}
-    {% if pOrg == 0 %}
-      .rc-option__onetime .rc-radio__label.rc_widget__option__label .rc-option__text::after {
-      	text-decoration: none;
-      	font-weight: 600;
-      }
-      .price__pricing-group.nws-chk-pr dd .price-item.price-item--regular {
-      	display: none;
-      }
-    {% endif %}
+    .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--onetime::before {
+        content: "{{ pOrg | money }}";
+        margin-right: 4px;
+        font-size: 14px;
+        line-height: normal;
+    }
+    .rc-radio__label.rc_widget__option__label .rc-option__price.rc_widget__price.rc_widget__price--onetime::after {
+        content: "({{ pOrgd }}% off)";
+        margin-left: 0px;
+        color: red;
+        font-size: 14px;
+        line-height: normal;
+    }
     .nws-pdp-template-form .product-form .product__price .price-item--sale {
         margin-left: 5px;
     }

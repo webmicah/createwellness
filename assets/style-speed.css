@@ -11,7 +11,7 @@
   --bg: #ffffff;
   --primary: #f57e25;
   --secondary: #333333;
-  --bglazy: #ffffff;--imglazy: url(//trycreate.co/cdn/shop/t/24/assets/Infinity-1.2s-68px-Color.svg?v=12370267424136452851701197932);--img_ar: 100.0%;
+  --bglazy: #ffffff;--imglazy: url(//trycreate.co/cdn/shop/t/23/assets/Infinity-1.2s-68px-Color.svg?v=12370267424136452851700557900);--img_ar: 100.0%;
 }
 *,
 *::before,
@@ -333,7 +333,7 @@ img.mll-lz{
 
 @font-face {
   font-family: 'Flaming';
-  src: url("//trycreate.co/cdn/shop/t/24/assets/flaming-webfont.woff2?v=19953284043012408971701197932") format("woff2"), url("//trycreate.co/cdn/shop/t/24/assets/flaming-webfont.woff?v=167615567075751830921701197932") format("woff");
+  src: url("//trycreate.co/cdn/shop/t/23/assets/flaming-webfont.woff2?v=19953284043012408971700557900") format("woff2"), url("//trycreate.co/cdn/shop/t/23/assets/flaming-webfont.woff?v=167615567075751830921700557900") format("woff");
   font-display: swap;
 }
 

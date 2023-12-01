@@ -1,0 +1,59 @@
+<div id="{{ section.settings.custom_class }}">
+
+{{ section.settings.custom_liquid }}
+
+</div>
+
+<style>
+section#shopify-section-{{ section.id }}{
+  margin-top: 0px!important;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Liquid",
+  "tag": "section",
+  "class": "spaced-section",
+  "settings": [
+    {
+      "type": "liquid",
+      "id": "custom_liquid",
+      "label": "Custom code"
+    },
+    {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom class"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Liquid"
+    }
+  ]
+}
+{% endschema %}
+
+
+<script>
+$( document ).ready(function() {
+
+      $(document).on('click', '#shopify-section-{{ section.id }}  .rmq-4a86ea09', function() {
+          $('.rmq-38a1bc04.rmq-5aa488a6.rmq-5ec198a9.rmq-ced74b94').attr("aria-expanded","false");
+          $('.rmq-57d1d8a2.rmq-ab51f1c0.rmq-fc52f14.rmq-29c6a209').attr("data-state","close");
+          $('.rmq-6cf645cc.rmq-7fe62e91.rmq-dad7d34b.rmq-a148beb6 .replo-animated').attr("hidden","true");   
+
+      $( this).each(function() {
+          $(this).parents('.rmq-38a1bc04.rmq-5aa488a6.rmq-5ec198a9.rmq-ced74b94').attr("aria-expanded","true");
+          $(this).parents('.rmq-57d1d8a2.rmq-ab51f1c0.rmq-fc52f14.rmq-29c6a209').attr("data-state","open");
+          $(this).parents('.rmq-57d1d8a2.rmq-ab51f1c0.rmq-fc52f14.rmq-29c6a209').find('.replo-animated').removeAttr("hidden");          
+      });
+        
+
+
+  
+
+      });  
+});
+</script>

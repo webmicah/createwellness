@@ -1,0 +1,249 @@
+<link rel="stylesheet" href="{{ 'component-rte.css' | asset_url }}" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="{{ 'section-rich-text.css' | asset_url }}" media="print" onload="this.media='all'">
+
+
+
+  {%- liquid
+     if section.settings.enable_custom_color == true 
+     assign color_scheme = 'custom-colors' 
+   else 
+     assign color_scheme = section.settings.color_scheme 
+   endif 
+  -%}
+    
+{%- style -%}
+  #shopify-section-{{ section.id }} .rich-text {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  #shopify-section-{{ section.id }} .rich-text__blocks{
+    text-align:{{ section.settings.mobile_content_alignment }};
+  }
+  
+  {% if section.settings.enable_custom_color == true %}
+    #shopify-section-{{ section.id }} .rich-text {
+      background-color: {{section.settings.custom_bg_color}};
+    }
+    #shopify-section-{{ section.id }} h2 {
+      color: {{section.settings.custom_heading_color}};
+    }
+    #shopify-section-{{ section.id }} p {
+      color: {{ section.settings.custom_desc_color }};
+    }
+    #shopify-section-{{ section.id }} .button {
+      color: {{section.settings.btn_text_color}};
+      background-color: {{section.settings.btn_bg_color}};
+      box-shadow:none;
+    }
+    #shopify-section-{{ section.id }} .button--secondary{
+      border: 1px solid {{section.settings.btn_text_color}};          
+    }
+    #shopify-section-{{ section.id }} .button:hover,
+    #shopify-section-{{ section.id }} .button--secondary:hover {
+      color: {{section.settings.btn_text_color_hover}};
+      background-color: {{section.settings.btn_bg_color_hover}};
+      border: 1px solid {{section.settings.btn_text_color_hover}};
+    }
+    #shopify-section-{{ section.id }} .button:hover:after,
+    #shopify-section-{{ section.id }} .button:after {
+      content:none;
+    }
+  {% endif %}
+  @media screen and (min-width: 750px) {
+    #shopify-section-{{ section.id }} .rich-text {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+    #shopify-section-{{ section.id }} .rich-text__blocks{
+      max-width:{{section.settings.content_width}}px;
+      text-align:{{ section.settings.desktop_content_alignment }};
+    }
+  }
+  
+{%- endstyle -%}
+  
+<div class="rich-text color-{{ color_scheme }} custom--{{ custom_class }} gradient{% if section.settings.full_width %} rich-text--full-width{% endif %}">
+  <div class="rich-text__blocks content-position-{{ section.settings.desktop_content_position }} desktop-align-{{ section.settings.desktop_content_alignment }} align-{{ section.settings.mobile_content_alignment }}">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'heading' -%}
+          <h2 class="{{ block.settings.heading_size }}" {{ block.shopify_attributes }}>{{ block.settings.heading | escape }}</h2>
+        {%- when 'text' -%}
+          <div class="rich-text__text rte{{ block.shopify_attributes }}"><div class="{% if block.settings.text_size == "big" %}big-text{% endif %} ">{{ block.settings.text }}</div></div>
+        {%- when 'button' -%}
+          <a ga-event-label="{{block.settings.Event_label}}" ga-event-category="{{block.settings.Event_category}}" {% if block.settings.button_link == blank %} aria-disabled="true"{% else %} href="{{ block.settings.button_link }}"{% endif %} class="ga-event-click button{% if block.settings.button_style_secondary %} button--secondary{% else %} button--primary{% endif %}" {{ block.shopify_attributes }}>
+            {{ block.settings.button_label | escape }}
+          </a>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Rich Text",
+  "tag": "section",
+  "class": "spaced-section spaced-section--full-width",
+  "settings": [
+     {
+      "type": "text",
+      "id": "custom_class",
+      "label": "Custom class"
+    },
+    {
+      "type": "checkbox",
+      "id": "full_width",
+      "default": true,
+      "label": "Make section full width"
+    },
+    {
+      "type": "range",
+      "id": "content_width",
+      "min": 400,
+      "max": 1000,
+      "step": 10,
+      "unit": "px",
+      "label": "Content width",
+      "default": 740
+    },
+    {
+      "type": "select",
+      "id": "desktop_content_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Center"
+    },    
+    {
+      "type": "select",
+      "id": "desktop_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Center"
+    },
+    {
+      "type": "select",
+      "id": "mobile_content_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Center"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Talk about your brand",
+          "label": "Heading"
+        },
+  
+        {
+          "type": "select",
+          "id": "heading_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "Small"
+            },
+            {
+              "value": "h1",
+              "label": "Medium"
+            },
+            {
+              "value": "h0",
+              "label": "Large"
+            }
+          ],
+          "default": "h1",
+          "label": "Heading font size"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Richtext",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "richtext",
+          "id": "text",
+          "default": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.</p>",
+          "label": "Description"
+        },
+        {
+        "type": "select",
+        "id": "text_size",
+        "options": [
+          {
+            "value": "normal",
+            "label": "Normal"
+          },
+          {
+            "value": "big",
+            "label": "Big"
+          }
+        ],
+        "default": "normal",
+        "label": "Body font size"
+      }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Rich Text",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

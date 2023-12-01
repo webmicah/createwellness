@@ -14,6 +14,12 @@
 {% render 'replo-head' %}
 <link rel='preconnect dns-prefetch' href='https://triplewhale-pixel.web.app/' crossorigin />
 <link rel='preconnect dns-prefetch' href='https://api.config-security.com/' crossorigin />
+<link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    >
 <script>
 /* >> TriplePixel :: start*/
 ~function(W,H,A,L,E,_,B,N){function O(U,T,H,R){void 0===R&&(R=!1),H=new XMLHttpRequest,H.open("GET",U,!0),H.send(null),H.onreadystatechange=function(){4===H.readyState&&200===H.status?(R=H.responseText,U.includes(".txt")?eval(R):N[B]=R):(299<H.status||H.status<200)&&T&&!R&&(R=!0,O(U,T-1))}}if(N=window,!N[H+"sn"]){N[H+"sn"]=1;try{A.setItem(H,1+(0|A.getItem(H)||0)),(E=JSON.parse(A.getItem(H+"U")||"[]")).push(location.href),A.setItem(H+"U",JSON.stringify(E))}catch(e){}A.getItem('"!nC`')||(A=N,A[H]||(L=function(){return Date.now().toString(36)+"_"+Math.random().toString(36)},E=A[H]=function(t,e){return W=L(),(E._q=E._q||[]).push([W,t,e]),W},E.ch=W,B="configSecurityConfModel",N[B]=1,O("//conf.config-security.com/model",0),O("//triplewhale-pixel.web.app/triplefw.txt?",5)))}}("","TriplePixel",localStorage);
@@ -62,19 +68,30 @@
     {%- render 'nws-recharge-css' -%}
     {{ 'nws-custom.css' | asset_url | stylesheet_tag }}  
 
+
 <!-- Start of Superfiliate -->
 <script async src="https://superfiliate-cdn.com/storefront.js?shop=trycreate-808.myshopify.com"></script>
 <!-- End of Superfiliate -->
 
+    
 </head>
   <body class="template-{{ request.page_type | default: page_title | handle }} {{ page_title | handle }}{%if settings.img_type == 'stretch'%} is-cover{%elsif settings.img_type == 'nonstretch'%} is-contain{%else%} is-default{%endif%} {{ product.template_suffix }}" grid-info="{{settings.pr_grid_talg}}" grid-name-opt="{{settings.qs_use_name_opt}}" grid-ol-first-opt="{{settings.qs_hide_only_1_opt}}" grid-flash="{{settings.label_style}}">
     {%- render 'kt_icons_system' -%}
     <div id="bg-overlay"></div>
     <div class="content_for_page">
-          {%-section 'nws-header-topbar'-%}
+      {%  if template == "page.gummy-fb" %}
+        {%-section 'nws-header-topbar-gummy'-%}
+      {% else %} 
+        {%-section 'nws-header-topbar'-%}
+      {% endif %} 
 
-      {%-render 'header-layout'-%}
-      {%-section 'header-mobile'-%}
+      {%  if template == "page.gummy-fb" %}
+            {%-render 'header-layout-gummy'-%}
+      {% else %} 
+          {%-render 'header-layout'-%}
+          {%-section 'header-mobile'-%}
+      {% endif %} 
+
       {%-if template.name != 'cart'-%}
         {%-case settings.type_ajax_cart-%}
         {%-when 'drawer'-%}
@@ -91,7 +108,11 @@
           <div class="lazyload lazypreload" data-include="{{routes.cart_url | append: '?view=kt_cart_popup'}}"></div>
         {%-endcase-%}
       {%-endif-%}
-      {%-section 'nws-header-belowbar'-%}
+      {%  if template == "page.gummy-fb" %}
+      {% else %} 
+        {%-section 'nws-header-belowbar'-%}
+      {% endif %} 
+      
           
       <main class="main-content{%if settings.use_wrap_container %} wrap-container{%endif%}{%unless template.name == 'index'%} page-container{%endunless%}" id="PageContainer">
         {%- liquid
@@ -136,6 +157,7 @@
     </div>
     <script src="{{ 'lazysizes.min.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'jquery-3.6.0.min.js' | asset_url }}"{% unless request.design_mode %} defer="defer"{%-endunless-%}></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>    
     <script src="{{ 'vendor.js' | asset_url }}" defer="defer"></script>
     <script src="{{ 'theme_footer_js.js' | asset_url }}" defer="defer"></script>
     {%- if settings.show_multiple_currencies -%}
@@ -199,7 +221,9 @@
 
     {%-render 'nws-custom-js-file'-%}
     <script src="{{ 'nws-custom.js' | asset_url }}" defer="defer"></script>
-
+    {% unless template == "page.gummy-fb" %}
+            <script src="{{ 'nws-custom.js' | asset_url }}" defer="defer"></script>
+    {% endunless %} 
     <script type="text/javascript">
     	document.querySelector('.klaviyo_form_trigger').addEventListener('click', function (){
     		window._klOnsite = window._klOnsite || []; 
@@ -229,6 +253,10 @@
             }
           });
       </script>
+    {% endif %}
+
+    {% if template == 'page.gummy-fb'   %}
+    {{ 'gummy-fb.js' | asset_url | script_tag }}
     {% endif %}
    
     <!-- Stamped - Begin script -->
