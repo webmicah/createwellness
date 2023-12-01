@@ -1,4 +1,50 @@
 
+<style>
+  
+#shopify-section-{{ section.id }} .grid__item.product__media-wrapper {
+    position: relative;
+}  
+
+#shopify-section-{{ section.id }} a.supp-facts {
+    color: #1e1e1e;
+    font-family: auto;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: uppercase;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: block;
+    letter-spacing: 3px;
+    position: absolute;
+    bottom: 0px;
+    transform: translate(-35%, -50%);
+    left: 50%;
+}
+
+@media(max-width:428px){
+
+#shopify-section-{{ section.id }} a.supp-facts {
+    margin-bottom: 40px;
+}
+
+
+#shopify-section-{{ section.id }}{
+    margin-top: 3rem!important;
+}
+
+  .paid-product-section .custom-heading {
+      padding: 0px 0px 30px 0px;
+  }
+    
+}
+                          
+ </style>   
+
+
+
+
 {%- liquid 
   assign identifier = section.settings.section_identifier | handleize
   for object in shop.metaobjects.paid_subscription_featured_product.values 
